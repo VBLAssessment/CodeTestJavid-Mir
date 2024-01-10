@@ -21,9 +21,9 @@ namespace CandidateCodeTest.Common
 
                Log(logMessage, w);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
 
         }
@@ -39,9 +39,9 @@ namespace CandidateCodeTest.Common
                 txtWriter.WriteLine("-------------------------------");
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
     }

@@ -85,3 +85,4 @@
 /CandidateCodeTest/CandidateCodeTest/bin/Debug/net5.0/RazorLight.dll
 /CandidateCodeTest/.vs/CandidateCodeTest/v17/TestStore/0/testlog.manifest
 /CandidateCodeTest/.vs/CandidateCodeTest/v17/TestStore/0/002.testlog
+*.testlog

@@ -1,7 +1,8 @@
 ﻿using CandidateCodeTest.Common.Interfaces;
 using FluentEmail.Core;
-using FluentEmail.Razor;
 using FluentEmail.Smtp;
+using System;
+using System.IO;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +18,18 @@ namespace CandidateCodeTest.Services.Implementations
         }
         public async Task SendEmailAsync()
         {
+            var sendMailtoThisPath = Directory.CreateDirectory
+                                            (Path.Combine
+                                            (Environment.GetFolderPath
+                                            (Environment.SpecialFolder.Desktop), "Mails"));
+
             var sender = new SmtpSender(() => new SmtpClient("localhost")
             {
                 EnableSsl = false,
                 //DeliveryMethod = SmtpDeliveryMethod.Network,
                 //Port = 25
                 DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
-                PickupDirectoryLocation = @"C:\Mails"
+                PickupDirectoryLocation = sendMailtoThisPath.FullName
             });
 
             StringBuilder template = new();
@@ -32,16 +38,15 @@ namespace CandidateCodeTest.Services.Implementations
             template.AppendLine("- From Javid (The UST Team Member)");
 
             Email.DefaultSender = sender;
-            //Email.DefaultRenderer = new RazorRenderer();
 
             var email = await Email
                 .From("javid@mir.com")
                 .To("test@test.com", "Test Member")
                 .Subject("Thanks!")
-                //.UsingTemplate(template.ToString(), new { FirstName = "Test Member", ProjectName = "Send Email Test" })
                 .Body(template.ToString())
-                //.Body("Thanks for Being Here.")
                 .SendAsync();
+
+            //for the sample output, pease check '/SampleMail' folder in the current project
         }
     }
 }

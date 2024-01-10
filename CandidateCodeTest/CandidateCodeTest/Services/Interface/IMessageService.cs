@@ -7,7 +7,6 @@ namespace CandidateCodeTest.Services
         /// <summary>
         /// Function is used to send email.
         /// </summary>
-         //void SendEmail();
          Task SendEmailAsync();
     }
 }

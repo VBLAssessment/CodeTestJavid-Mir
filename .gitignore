@@ -1,0 +1,26 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.vsidx
+/CandidateCodeTest/.vs/CandidateCodeTest/v17/.suo
+/CandidateCodeTest/CandidateCodeTest/bin/Debug/net5.0/CandidateCodeTest.dll
+/CandidateCodeTest/CandidateCodeTest/bin/Debug/net5.0/CandidateCodeTest.pdb
+/CandidateCodeTest/CandidateCodeTest/bin/Debug/net5.0/CandidateCodeTest.runtimeconfig.dev.json
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/ref/CandidateCodeTest.dll
+/CandidateCodeTest/CandidateCodeTest/obj/CandidateCodeTest.csproj.nuget.dgspec.json
+/CandidateCodeTest/CandidateCodeTest/obj/CandidateCodeTest.csproj.nuget.g.props
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.AssemblyInfo.cs
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.AssemblyInfoInputs.cache
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.assets.cache
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.csproj.AssemblyReference.cache
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.csproj.CoreCompileInputs.cache
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.csproj.FileListAbsolute.txt
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.dll
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.GeneratedMSBuildEditorConfig.editorconfig
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.genruntimeconfig.cache
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.pdb
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/CandidateCodeTest.sourcelink.json
+/CandidateCodeTest/CandidateCodeTest/obj/Debug/net5.0/refint/CandidateCodeTest.dll
+/CandidateCodeTest/CandidateCodeTest/obj/project.assets.json
+/CandidateCodeTest/CandidateCodeTest/obj/project.nuget.cache

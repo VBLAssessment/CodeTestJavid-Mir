@@ -1,9 +1,6 @@
 using CandidateCodeTest.Common.Interfaces;
 using CandidateCodeTest.Services;
 using Moq;
-using System;
-using System.Reflection.Metadata;
-using Xunit;
 
 namespace CandidateCodeTest
 {
@@ -22,39 +19,39 @@ namespace CandidateCodeTest
         }
 
         [Fact]
-        public void Within_Time_Window_Email_Has_Been_Sent()
+        public async Task Within_Time_Window_Email_Has_Been_Sent()
         {
             // Arrange
-            _messageService?.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmailAsync());
             var startTime = new TimeSpan(0, 0, 0);
             var endTime = new TimeSpan(23, 59, 59);
             _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
-            var result = _customerService.HasEmailBeenSent();
+            var result = await _customerService.HasEmailBeenSent();
 
             // Assert
             Assert.True(result);
         }
 
         [Fact]
-        public void Outside_Time_Window_Email_Has_Not_Been_Sent()
+        public async Task Outside_Time_Window_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService?.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmailAsync());
             var startTime = new TimeSpan();
             var endTime = new TimeSpan();
             _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
-            var result = _customerService.HasEmailBeenSent();
+            var result = await _customerService.HasEmailBeenSent();
 
             // Assert
             Assert.False(result);
         }
 
         [Fact]
-        public void Throw_Exception_Email_Has_Not_Been_Sent()
+        public async Task Throw_Exception_Email_Has_Not_Been_Sent()
         {
             // Arrange
             bool result = false;
@@ -66,58 +63,58 @@ namespace CandidateCodeTest
                 _customerService = new CustomerService(null, startTime, endTime, null);
 
                 // Act
-                result = _customerService.HasEmailBeenSent();
+                result = await _customerService.HasEmailBeenSent();
             }
             catch (Exception)
             {
                 //assert
-                Assert.Throws<NullReferenceException>(() => _customerService.HasEmailBeenSent());
+                await Assert.ThrowsAsync<NullReferenceException>(async () => await _customerService.HasEmailBeenSent());
             }
         }
 
         [Fact]
-        public void Start_Date_Null_Email_Has_Not_Been_Sent()
+        public async Task Start_Date_Null_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService?.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmailAsync());
             var startTime = (TimeSpan?)null;
             var endTime = new TimeSpan(23, 59, 59);
             _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
-            var result = _customerService.HasEmailBeenSent();
+            var result = await _customerService.HasEmailBeenSent();
 
             // Assert
             Assert.False(result);
         }
 
         [Fact]
-        public void End_Date_Null_Email_Has_Not_Been_Sent()
+        public async Task End_Date_Null_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService?.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmailAsync());
             var startTime = new TimeSpan(0, 0, 0);
             var endTime = (TimeSpan?)null;
             _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
-            var result = _customerService.HasEmailBeenSent();
+            var result = await _customerService.HasEmailBeenSent();
 
             // Assert
             Assert.False(result);
         }
 
         [Fact]
-        public void Null_Params_Email_Has_Not_Been_Sent()
+        public async Task Null_Params_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService?.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmailAsync());
             var startTime = (TimeSpan?)null;
             var endTime = (TimeSpan?)null;
             _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
-            var result = _customerService.HasEmailBeenSent();
+            var result = await _customerService.HasEmailBeenSent();
 
             // Assert
             Assert.False(result);

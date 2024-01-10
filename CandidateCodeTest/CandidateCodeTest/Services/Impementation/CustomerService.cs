@@ -1,7 +1,7 @@
 ﻿using CandidateCodeTest.Common.Interfaces;
 using CandidateCodeTest.Services;
 using System;
-using System.Reflection.Metadata;
+using System.Threading.Tasks;
 
 namespace CandidateCodeTest
 {
@@ -18,10 +18,9 @@ namespace CandidateCodeTest
             _endTime = endTime;
             _messageService = messageService;
         }
-        public bool HasEmailBeenSent()
+        public async Task<bool> HasEmailBeenSent()
         {
             _logWriter.LogWrite("HasEmailBeenSent Method Started");
-            //MessageService messageServices = new MessageService(_logWriter);
             try
             {
                 TimeSpan now = DateTime.Now.TimeOfDay;
@@ -32,7 +31,7 @@ namespace CandidateCodeTest
 
                 if ((now > _startTime) && (now < _endTime))
                 {
-                    _messageService.SendEmail();
+                    await _messageService.SendEmailAsync();
                     _logWriter.LogWrite("HasEmailBeenSent Method ended");
                     return true;
                 }

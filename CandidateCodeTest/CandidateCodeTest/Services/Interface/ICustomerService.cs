@@ -1,4 +1,6 @@
-﻿namespace CandidateCodeTest.Services
+﻿using System.Threading.Tasks;
+
+namespace CandidateCodeTest.Services
 {
     public interface ICustomerService
     {
@@ -6,6 +8,6 @@
         /// Function used  for confirmation if email has been sent or not.
         /// </summary>
         /// <returns></returns>
-        bool HasEmailBeenSent();
+        Task<bool> HasEmailBeenSent();
     }
 }

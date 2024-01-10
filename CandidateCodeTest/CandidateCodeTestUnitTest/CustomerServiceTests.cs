@@ -1,5 +1,6 @@
 using CandidateCodeTest.Common.Interfaces;
 using CandidateCodeTest.Services;
+using CandidateCodeTest.Services.Implementations;
 using Moq;
 
 namespace CandidateCodeTest
@@ -8,6 +9,7 @@ namespace CandidateCodeTest
     public class CustomerServiceTests
     {
         private CustomerService _customerService;
+        private MessageService messageService;
         private Mock<IMessageService>? _messageService;
         private readonly Mock<ILogWriter> _logWriter;
 
@@ -32,6 +34,22 @@ namespace CandidateCodeTest
 
             // Assert
             Assert.True(result);
+        }
+
+        [Fact]
+        public async Task Within_Time_Window_Email_Has_Been_Sent_MessageService()
+        {
+            // Arrange
+            _messageService?.Setup(m => m.SendEmailAsync());
+            var startTime = new TimeSpan(0, 0, 0);
+            var endTime = new TimeSpan(23, 59, 59);
+            messageService = new MessageService(_logWriter.Object);
+
+            // Act
+            await messageService.SendEmailAsync();
+
+            //// Assert
+            //Assert.True(result);
         }
 
         [Fact]

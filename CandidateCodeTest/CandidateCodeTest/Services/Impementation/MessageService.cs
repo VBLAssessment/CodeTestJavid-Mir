@@ -28,11 +28,11 @@ namespace CandidateCodeTest.Services.Implementations
 
             StringBuilder template = new();
             template.AppendLine("Dear Test Member,");
-            template.AppendLine("<p>Thanks for Being Here to check this Send Email Project. We hope you liked it.</p>");
+            template.AppendLine("Thanks for Being Here to check this Send Email Project. We hope you liked it.");
             template.AppendLine("- From Javid (The UST Team Member)");
 
             Email.DefaultSender = sender;
-            Email.DefaultRenderer = new RazorRenderer();
+            //Email.DefaultRenderer = new RazorRenderer();
 
             var email = await Email
                 .From("javid@mir.com")

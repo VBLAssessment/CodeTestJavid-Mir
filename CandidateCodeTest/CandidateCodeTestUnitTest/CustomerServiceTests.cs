@@ -1,4 +1,4 @@
-﻿using CandidateCodeTest.Common.Interfaces;
+using CandidateCodeTest.Common.Interfaces;
 using CandidateCodeTest.Services;
 using Moq;
 using System;
@@ -11,7 +11,7 @@ namespace CandidateCodeTest
     public class CustomerServiceTests
     {
         private CustomerService _customerService;
-        private Mock<IMessageService> _messageService;
+        private Mock<IMessageService>? _messageService;
         private readonly Mock<ILogWriter> _logWriter;
 
         public CustomerServiceTests()
@@ -25,10 +25,10 @@ namespace CandidateCodeTest
         public void Within_Time_Window_Email_Has_Been_Sent()
         {
             // Arrange
-            _messageService.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmail());
             var startTime = new TimeSpan(0, 0, 0);
             var endTime = new TimeSpan(23, 59, 59);
-            _customerService = new CustomerService(_messageService.Object, startTime, endTime, _logWriter.Object);
+            _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
             var result = _customerService.HasEmailBeenSent();
@@ -41,10 +41,10 @@ namespace CandidateCodeTest
         public void Outside_Time_Window_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmail());
             var startTime = new TimeSpan();
             var endTime = new TimeSpan();
-            _customerService = new CustomerService(_messageService.Object, startTime, endTime, _logWriter.Object);
+            _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
             var result = _customerService.HasEmailBeenSent();
@@ -79,10 +79,10 @@ namespace CandidateCodeTest
         public void Start_Date_Null_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmail());
             var startTime = (TimeSpan?)null;
             var endTime = new TimeSpan(23, 59, 59);
-            _customerService = new CustomerService(_messageService.Object, startTime, endTime, _logWriter.Object);
+            _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
             var result = _customerService.HasEmailBeenSent();
@@ -95,10 +95,10 @@ namespace CandidateCodeTest
         public void End_Date_Null_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmail());
             var startTime = new TimeSpan(0, 0, 0);
             var endTime = (TimeSpan?)null;
-            _customerService = new CustomerService(_messageService.Object, startTime, endTime, _logWriter.Object);
+            _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
             var result = _customerService.HasEmailBeenSent();
@@ -111,10 +111,10 @@ namespace CandidateCodeTest
         public void Null_Params_Email_Has_Not_Been_Sent()
         {
             // Arrange
-            _messageService.Setup(m => m.SendEmail());
+            _messageService?.Setup(m => m.SendEmail());
             var startTime = (TimeSpan?)null;
             var endTime = (TimeSpan?)null;
-            _customerService = new CustomerService(_messageService.Object, startTime, endTime, _logWriter.Object);
+            _customerService = new CustomerService(_messageService?.Object, startTime, endTime, _logWriter.Object);
 
             // Act
             var result = _customerService.HasEmailBeenSent();
